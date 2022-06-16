@@ -200,6 +200,27 @@ public class H7G5EntryLocalServiceUtil {
 		return getService().fetchH7G5Entry(h7g5EntryId);
 	}
 
+	public static List<H7G5Entry> findByH7G5FolderId(long h7g5FolderId) {
+		return getService().findByH7G5FolderId(h7g5FolderId);
+	}
+
+	public static H7G5Entry findByH_D_N(
+			long h7g5FolderId, String description, String name)
+		throws com.liferay.h7g5.exception.NoSuchH7G5EntryException {
+
+		return getService().findByH_D_N(h7g5FolderId, description, name);
+	}
+
+	public static H7G5Entry findByKey(String key)
+		throws com.liferay.h7g5.exception.NoSuchH7G5EntryException {
+
+		return getService().findByKey(key);
+	}
+
+	public static List<H7G5Entry> findByName(String name) {
+		return getService().findByName(name);
+	}
+
 	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery
 		getActionableDynamicQuery() {
 

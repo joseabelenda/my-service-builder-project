@@ -14,6 +14,7 @@
 
 package com.liferay.h7g5.service;
 
+import com.liferay.h7g5.exception.NoSuchH7G5EntryException;
 import com.liferay.h7g5.model.H7G5Entry;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
@@ -191,6 +192,16 @@ public interface H7G5EntryLocalService
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public H7G5Entry fetchH7G5Entry(long h7g5EntryId);
+
+	public List<H7G5Entry> findByH7G5FolderId(long h7g5FolderId);
+
+	public H7G5Entry findByH_D_N(
+			long h7g5FolderId, String description, String name)
+		throws NoSuchH7G5EntryException;
+
+	public H7G5Entry findByKey(String key) throws NoSuchH7G5EntryException;
+
+	public List<H7G5Entry> findByName(String name);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ActionableDynamicQuery getActionableDynamicQuery();
