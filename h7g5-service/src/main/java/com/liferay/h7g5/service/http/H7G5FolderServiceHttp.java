@@ -83,10 +83,56 @@ public class H7G5FolderServiceHttp {
 		}
 	}
 
+	public static com.liferay.h7g5.model.H7G5Folder
+			addMyCustomH7G5FolderWithPermissionCheck(
+				HttpPrincipal httpPrincipal, String description, String name)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		try {
+			MethodKey methodKey = new MethodKey(
+				H7G5FolderServiceUtil.class,
+				"addMyCustomH7G5FolderWithPermissionCheck",
+				_addMyCustomH7G5FolderWithPermissionCheckParameterTypes1);
+
+			MethodHandler methodHandler = new MethodHandler(
+				methodKey, description, name);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception exception) {
+				if (exception instanceof
+						com.liferay.portal.kernel.exception.PortalException) {
+
+					throw (com.liferay.portal.kernel.exception.PortalException)
+						exception;
+				}
+
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					exception);
+			}
+
+			return (com.liferay.h7g5.model.H7G5Folder)returnObj;
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException
+					systemException) {
+
+			_log.error(systemException, systemException);
+
+			throw systemException;
+		}
+	}
+
 	private static Log _log = LogFactoryUtil.getLog(
 		H7G5FolderServiceHttp.class);
 
 	private static final Class<?>[] _addMyCustomH7G5FolderParameterTypes0 =
 		new Class[] {String.class, String.class};
+	private static final Class<?>[]
+		_addMyCustomH7G5FolderWithPermissionCheckParameterTypes1 = new Class[] {
+			String.class, String.class
+		};
 
 }

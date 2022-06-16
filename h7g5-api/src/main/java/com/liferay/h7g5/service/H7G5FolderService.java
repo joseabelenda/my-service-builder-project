@@ -50,6 +50,10 @@ public interface H7G5FolderService extends BaseService {
 	 */
 	public H7G5Folder addMyCustomH7G5Folder(String description, String name);
 
+	public H7G5Folder addMyCustomH7G5FolderWithPermissionCheck(
+			String description, String name)
+		throws PortalException;
+
 	/**
 	 * Returns the OSGi service identifier.
 	 *

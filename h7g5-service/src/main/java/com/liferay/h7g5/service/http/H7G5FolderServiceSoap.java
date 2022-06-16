@@ -81,6 +81,26 @@ public class H7G5FolderServiceSoap {
 		}
 	}
 
+	public static com.liferay.h7g5.model.H7G5FolderSoap
+			addMyCustomH7G5FolderWithPermissionCheck(
+				String description, String name)
+		throws RemoteException {
+
+		try {
+			com.liferay.h7g5.model.H7G5Folder returnValue =
+				H7G5FolderServiceUtil.addMyCustomH7G5FolderWithPermissionCheck(
+					description, name);
+
+			return com.liferay.h7g5.model.H7G5FolderSoap.toSoapModel(
+				returnValue);
+		}
+		catch (Exception exception) {
+			_log.error(exception, exception);
+
+			throw new RemoteException(exception.getMessage());
+		}
+	}
+
 	private static Log _log = LogFactoryUtil.getLog(
 		H7G5FolderServiceSoap.class);
 
