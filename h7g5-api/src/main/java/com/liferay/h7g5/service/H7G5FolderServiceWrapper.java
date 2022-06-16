@@ -30,6 +30,13 @@ public class H7G5FolderServiceWrapper
 		_h7g5FolderService = h7g5FolderService;
 	}
 
+	@Override
+	public com.liferay.h7g5.model.H7G5Folder addMyCustomH7G5Folder(
+		String description, String name) {
+
+		return _h7g5FolderService.addMyCustomH7G5Folder(description, name);
+	}
+
 	/**
 	 * Returns the OSGi service identifier.
 	 *

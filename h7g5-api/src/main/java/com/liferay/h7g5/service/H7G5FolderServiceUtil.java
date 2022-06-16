@@ -14,6 +14,8 @@
 
 package com.liferay.h7g5.service;
 
+import com.liferay.h7g5.model.H7G5Folder;
+
 /**
  * Provides the remote service utility for H7G5Folder. This utility wraps
  * <code>com.liferay.h7g5.service.impl.H7G5FolderServiceImpl</code> and is an
@@ -33,13 +35,18 @@ public class H7G5FolderServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to <code>com.liferay.h7g5.service.impl.H7G5FolderServiceImpl</code> and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static H7G5Folder addMyCustomH7G5Folder(
+		String description, String name) {
+
+		return getService().addMyCustomH7G5Folder(description, name);
+	}
 
 	/**
 	 * Returns the OSGi service identifier.
 	 *
 	 * @return the OSGi service identifier
 	 */
-	public static java.lang.String getOSGiServiceIdentifier() {
+	public static String getOSGiServiceIdentifier() {
 		return getService().getOSGiServiceIdentifier();
 	}
 
