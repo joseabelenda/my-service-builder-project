@@ -2,6 +2,9 @@ package com.liferay.h7g5.web.internal.portlet;
 
 import com.liferay.h7g5.model.H7G5Folder;
 import com.liferay.h7g5.service.H7G5FolderLocalService;
+import com.liferay.h7g5.service.H7G5FolderService;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import java.io.IOException;
@@ -43,20 +46,22 @@ public class H7G5Portlet extends GenericPortlet {
 			"There are " + _h7G5FolderLocalService.getH7G5FoldersCount() +
 				" folders.");
 
-		H7G5Folder h7g5Folder = _h7G5FolderLocalService.createH7G5Folder(
-			System.currentTimeMillis());
-
-		h7g5Folder.setDescription(StringUtil.randomString());
-		h7g5Folder.setName(StringUtil.randomString());
-
-		_h7G5FolderLocalService.addH7G5Folder(h7g5Folder);
+		try {
+			_h7G5FolderService.addMyCustomH7G5FolderWithPermissionCheck(
+				StringUtil.randomString(), StringUtil.randomString());
+		}
+		catch(PortalException portalException) {
+			printWriter.println("\n" + portalException.getMessage());
+		}
 
 		System.out.println(
 			"After adding a new folder, there are now " +
 				_h7G5FolderLocalService.getH7G5FoldersCount() + " folders.");
 	}
-
+	
 	@Reference
 	private H7G5FolderLocalService _h7G5FolderLocalService;
-
+	
+	@Reference
+	private H7G5FolderService _h7G5FolderService;
 }
