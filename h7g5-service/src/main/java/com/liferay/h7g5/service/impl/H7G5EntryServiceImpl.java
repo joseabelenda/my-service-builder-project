@@ -38,29 +38,38 @@ import org.osgi.service.component.annotations.Component;
 )
 public class H7G5EntryServiceImpl extends H7G5EntryServiceBaseImpl {
 
-	public java.util.List<H7G5Entry> findByH7G5FolderId(long h7g5FolderId)
-		throws PortalException {
+	public H7G5Entry findByH_D_N(
+			long h7g5FolderId, String description, String name)
+		throws NoSuchH7G5EntryException, PortalException {
+
 		_checkEmailAddress();
-		return h7g5EntryLocalService.findByH7G5FolderId(h7g5FolderId);
+
+		return h7g5EntryLocalService.findByH_D_N(
+			h7g5FolderId, description, name);
 	}
 
-	public java.util.List<H7G5Entry> findByName(String name)
+	public java.util.List<H7G5Entry> findByH7G5FolderId(long h7g5FolderId)
 		throws PortalException {
+
 		_checkEmailAddress();
-		return h7g5EntryLocalService.findByName(name);
+
+		return h7g5EntryLocalService.findByH7G5FolderId(h7g5FolderId);
 	}
 
 	public H7G5Entry findByKey(String key)
 		throws NoSuchH7G5EntryException, PortalException {
+
 		_checkEmailAddress();
+
 		return h7g5EntryLocalService.findByKey(key);
 	}
 
-	public H7G5Entry findByH_D_N(
-			long h7g5FolderId, String description, String name)
-		throws NoSuchH7G5EntryException, PortalException {
+	public java.util.List<H7G5Entry> findByName(String name)
+		throws PortalException {
+
 		_checkEmailAddress();
-		return h7g5EntryLocalService.findByH_D_N(h7g5FolderId, description, name);
+
+		return h7g5EntryLocalService.findByName(name);
 	}
 
 	private void _checkEmailAddress() throws PortalException {
@@ -69,5 +78,6 @@ public class H7G5EntryServiceImpl extends H7G5EntryServiceBaseImpl {
 		if (!Objects.equals(user.getEmailAddress(), "test@liferay.com")) {
 			throw new PrincipalException("You are not test@liferay.com");
 		}
- 	}
+	}
+
 }

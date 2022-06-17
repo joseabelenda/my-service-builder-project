@@ -11,109 +11,126 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
+
 package com.liferay.h7g5.service.persistence.impl;
-
-import com.liferay.h7g5.service.persistence.H7G5EntryFinder;
-
-import java.util.List;
 
 import com.liferay.h7g5.model.H7G5Entry;
 import com.liferay.h7g5.service.H7G5EntryLocalServiceUtil;
+import com.liferay.h7g5.service.persistence.H7G5EntryFinder;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.exception.SystemException;
 
+import java.util.List;
 
-import org.osgi.service.component.annotations.Component;
+public class H7G5EntryFinderImpl
+	extends H7G5EntryFinderBaseImpl implements H7G5EntryFinder {
 
-public class H7G5EntryFinderImpl extends H7G5EntryFinderBaseImpl implements H7G5EntryFinder {
-    
-    public List<H7G5Entry> findByH_D_N(long h7g5FolderId, String description, String name) {
-        Session session = null;
+	public List<H7G5Entry> findByH_D_N(
+		long h7g5FolderId, String description, String name) {
 
-        try {
-            session = openSession();
+		Session session = null;
 
-            ClassLoader classLoader = getClass().getClassLoader();
+		try {
+			session = openSession();
 
-            DynamicQuery entryQuery = DynamicQueryFactoryUtil.forClass(H7G5Entry.class, classLoader)
-                .add(RestrictionsFactoryUtil.eq("description", description))
-                .add(RestrictionsFactoryUtil.eq("h7g5FolderId", h7g5FolderId))
-                .add(RestrictionsFactoryUtil.eq("name", name));
+			ClassLoader classLoader = getClass().getClassLoader();
 
-            return H7G5EntryLocalServiceUtil.dynamicQuery(entryQuery);
-        }
-        catch (Exception exception) {
-            throw new SystemException(exception);
-        }
-        finally {
-            closeSession(session);
-        }
-    }
-    
-    public List<H7G5Entry> findByKey(String key) {
-        Session session = null;
+			DynamicQuery entryQuery = DynamicQueryFactoryUtil.forClass(
+				H7G5Entry.class, classLoader
+			).add(
+				RestrictionsFactoryUtil.eq("description", description)
+			).add(
+				RestrictionsFactoryUtil.eq("h7g5FolderId", h7g5FolderId)
+			).add(
+				RestrictionsFactoryUtil.eq("name", name)
+			);
 
-         try {
-             session = openSession();
+			return H7G5EntryLocalServiceUtil.dynamicQuery(entryQuery);
+		}
+		catch (Exception exception) {
+			throw new SystemException(exception);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
 
-             ClassLoader classLoader = getClass().getClassLoader();
+	public List<H7G5Entry> findByH7G5FolderId(long h7g5FolderId) {
+		Session session = null;
 
-             DynamicQuery entryQuery = DynamicQueryFactoryUtil.forClass(H7G5Entry.class, classLoader)
-                 .add(RestrictionsFactoryUtil.eq("key", key));
+		try {
+			session = openSession();
 
-             return H7G5EntryLocalServiceUtil.dynamicQuery(entryQuery);
-         }
-         catch (Exception exception) {
-            throw new SystemException(exception);
-         }
-         finally {
-             closeSession(session);
-        }
-    }
-    
-    public List<H7G5Entry> findByName(String name) {
-        Session session = null;
-         try {
-             session = openSession();
+			ClassLoader classLoader = getClass().getClassLoader();
 
-             ClassLoader classLoader = getClass().getClassLoader();
+			DynamicQuery entryQuery = DynamicQueryFactoryUtil.forClass(
+				H7G5Entry.class, classLoader
+			).add(
+				RestrictionsFactoryUtil.eq("h7g5FolderId", h7g5FolderId)
+			);
 
-             DynamicQuery entryQuery = DynamicQueryFactoryUtil.forClass(H7G5Entry.class, classLoader)
-                 .add(RestrictionsFactoryUtil.eq("name", name));
+			return H7G5EntryLocalServiceUtil.dynamicQuery(entryQuery);
+		}
+		catch (Exception exception) {
+			throw new SystemException(exception);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
 
-             List<H7G5Entry> entries = H7G5EntryLocalServiceUtil.dynamicQuery(entryQuery);
+	public List<H7G5Entry> findByKey(String key) {
+		Session session = null;
 
-             return (List<H7G5Entry>) entries;
-         }
-         catch (Exception exception) {
-            throw new SystemException(exception);
-         }
-         finally {
-             closeSession((Session) session);
-         }
-    }
+		try {
+			session = openSession();
 
-    public List<H7G5Entry> findByH7G5FolderId(long h7g5FolderId) {
-        Session session = null;
+			ClassLoader classLoader = getClass().getClassLoader();
 
-         try {
-             session = openSession();
+			DynamicQuery entryQuery = DynamicQueryFactoryUtil.forClass(
+				H7G5Entry.class, classLoader
+			).add(
+				RestrictionsFactoryUtil.eq("key", key)
+			);
 
-             ClassLoader classLoader = getClass().getClassLoader();
+			return H7G5EntryLocalServiceUtil.dynamicQuery(entryQuery);
+		}
+		catch (Exception exception) {
+			throw new SystemException(exception);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
 
-             DynamicQuery entryQuery = DynamicQueryFactoryUtil.forClass(H7G5Entry.class, classLoader)
-                 .add(RestrictionsFactoryUtil.eq("h7g5FolderId", h7g5FolderId));
+	public List<H7G5Entry> findByName(String name) {
+		Session session = null;
 
-             return H7G5EntryLocalServiceUtil.dynamicQuery(entryQuery);
-         }
-         catch (Exception exception) {
-            throw new SystemException(exception);
-         }
-         finally {
-             closeSession(session);
-         }
-    }
+		try {
+			session = openSession();
+
+			ClassLoader classLoader = getClass().getClassLoader();
+
+			DynamicQuery entryQuery = DynamicQueryFactoryUtil.forClass(
+				H7G5Entry.class, classLoader
+			).add(
+				RestrictionsFactoryUtil.eq("name", name)
+			);
+
+			List<H7G5Entry> entries = H7G5EntryLocalServiceUtil.dynamicQuery(
+				entryQuery);
+
+			return (List<H7G5Entry>)entries;
+		}
+		catch (Exception exception) {
+			throw new SystemException(exception);
+		}
+		finally {
+			closeSession((Session)session);
+		}
+	}
+
 }
