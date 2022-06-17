@@ -25,6 +25,9 @@ import com.liferay.portal.kernel.exception.SystemException;
 
 import java.util.List;
 
+/**
+ * @author José Abelenda
+ */
 public class H7G5EntryFinderImpl
 	extends H7G5EntryFinderBaseImpl implements H7G5EntryFinder {
 
@@ -36,19 +39,16 @@ public class H7G5EntryFinderImpl
 		try {
 			session = openSession();
 
-			ClassLoader classLoader = getClass().getClassLoader();
+			DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
+				H7G5Entry.class, getClass().getClassLoader());
 
-			DynamicQuery entryQuery = DynamicQueryFactoryUtil.forClass(
-				H7G5Entry.class, classLoader
-			).add(
-				RestrictionsFactoryUtil.eq("description", description)
-			).add(
-				RestrictionsFactoryUtil.eq("h7g5FolderId", h7g5FolderId)
-			).add(
-				RestrictionsFactoryUtil.eq("name", name)
-			);
+			dynamicQuery.add(
+				RestrictionsFactoryUtil.eq("description", description));
+			dynamicQuery.add(
+				RestrictionsFactoryUtil.eq("h7g5FolderId", h7g5FolderId));
+			dynamicQuery.add(RestrictionsFactoryUtil.eq("name", name));
 
-			return H7G5EntryLocalServiceUtil.dynamicQuery(entryQuery);
+			return H7G5EntryLocalServiceUtil.dynamicQuery(dynamicQuery);
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);
@@ -64,15 +64,13 @@ public class H7G5EntryFinderImpl
 		try {
 			session = openSession();
 
-			ClassLoader classLoader = getClass().getClassLoader();
+			DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
+				H7G5Entry.class, getClass().getClassLoader());
 
-			DynamicQuery entryQuery = DynamicQueryFactoryUtil.forClass(
-				H7G5Entry.class, classLoader
-			).add(
-				RestrictionsFactoryUtil.eq("h7g5FolderId", h7g5FolderId)
-			);
+			dynamicQuery.add(
+				RestrictionsFactoryUtil.eq("h7g5FolderId", h7g5FolderId));
 
-			return H7G5EntryLocalServiceUtil.dynamicQuery(entryQuery);
+			return H7G5EntryLocalServiceUtil.dynamicQuery(dynamicQuery);
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);
@@ -88,15 +86,12 @@ public class H7G5EntryFinderImpl
 		try {
 			session = openSession();
 
-			ClassLoader classLoader = getClass().getClassLoader();
+			DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
+				H7G5Entry.class, getClass().getClassLoader());
 
-			DynamicQuery entryQuery = DynamicQueryFactoryUtil.forClass(
-				H7G5Entry.class, classLoader
-			).add(
-				RestrictionsFactoryUtil.eq("key", key)
-			);
+			dynamicQuery.add(RestrictionsFactoryUtil.eq("key", key));
 
-			return H7G5EntryLocalServiceUtil.dynamicQuery(entryQuery);
+			return H7G5EntryLocalServiceUtil.dynamicQuery(dynamicQuery);
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);
@@ -112,16 +107,13 @@ public class H7G5EntryFinderImpl
 		try {
 			session = openSession();
 
-			ClassLoader classLoader = getClass().getClassLoader();
+			DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
+				H7G5Entry.class, getClass().getClassLoader());
 
-			DynamicQuery entryQuery = DynamicQueryFactoryUtil.forClass(
-				H7G5Entry.class, classLoader
-			).add(
-				RestrictionsFactoryUtil.eq("name", name)
-			);
+			dynamicQuery.add(RestrictionsFactoryUtil.eq("name", name));
 
 			List<H7G5Entry> entries = H7G5EntryLocalServiceUtil.dynamicQuery(
-				entryQuery);
+				dynamicQuery);
 
 			return (List<H7G5Entry>)entries;
 		}

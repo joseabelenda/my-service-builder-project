@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
 
+import java.util.List;
 import java.util.Objects;
 
 import org.osgi.service.component.annotations.Component;
@@ -48,7 +49,7 @@ public class H7G5EntryServiceImpl extends H7G5EntryServiceBaseImpl {
 			h7g5FolderId, description, name);
 	}
 
-	public java.util.List<H7G5Entry> findByH7G5FolderId(long h7g5FolderId)
+	public List<H7G5Entry> findByH7G5FolderId(long h7g5FolderId)
 		throws PortalException {
 
 		_checkEmailAddress();
@@ -64,9 +65,7 @@ public class H7G5EntryServiceImpl extends H7G5EntryServiceBaseImpl {
 		return h7g5EntryLocalService.findByKey(key);
 	}
 
-	public java.util.List<H7G5Entry> findByName(String name)
-		throws PortalException {
-
+	public List<H7G5Entry> findByName(String name) throws PortalException {
 		_checkEmailAddress();
 
 		return h7g5EntryLocalService.findByName(name);

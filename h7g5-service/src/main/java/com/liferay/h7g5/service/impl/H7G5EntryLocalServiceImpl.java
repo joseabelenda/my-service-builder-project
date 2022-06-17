@@ -19,6 +19,8 @@ import com.liferay.h7g5.model.H7G5Entry;
 import com.liferay.h7g5.service.base.H7G5EntryLocalServiceBaseImpl;
 import com.liferay.portal.aop.AopService;
 
+import java.util.List;
+
 import org.osgi.service.component.annotations.Component;
 
 /**
@@ -38,7 +40,7 @@ public class H7G5EntryLocalServiceImpl extends H7G5EntryLocalServiceBaseImpl {
 			h7g5FolderId, description, name);
 	}
 
-	public java.util.List<H7G5Entry> findByH7G5FolderId(long h7g5FolderId) {
+	public List<H7G5Entry> findByH7G5FolderId(long h7g5FolderId) {
 		return h7g5EntryPersistence.findByH7G5FolderId(h7g5FolderId);
 	}
 
@@ -46,7 +48,7 @@ public class H7G5EntryLocalServiceImpl extends H7G5EntryLocalServiceBaseImpl {
 		return h7g5EntryPersistence.findByKey(key);
 	}
 
-	public java.util.List<H7G5Entry> findByName(String name) {
+	public List<H7G5Entry> findByName(String name) {
 		return h7g5EntryPersistence.findByName(name);
 	}
 
